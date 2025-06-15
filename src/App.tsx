@@ -1,25 +1,11 @@
-import React from 'react';
+
 import './App.css';
-import utBadge from './assets/ut-badge.png';
 import { useState,useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
 
 
 function App() {
    const divRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
-    top: 0,
-    left: 0
-  });
-  useEffect(() => {
-    if (!divRef.current) return;
-
-    const { width, height, top, left } = divRef.current.getBoundingClientRect();
-
-    setDimensions({ width, height, top, left });
-  }, []);
+ 
   const [wins, setWins] = useState<number>(() => {
     const saved = localStorage.getItem('fut-wins');
     return saved ? parseInt(saved) : 0;
