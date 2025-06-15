@@ -1,11 +1,25 @@
 import React from 'react';
 import './App.css';
-import utBadge from './ut-badge.png';
-import { useState, useEffect } from 'react';
+import utBadge from './assets/ut-badge.png';
+import { useState,useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 
 function App() {
+   const divRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0
+  });
+  useEffect(() => {
+    if (!divRef.current) return;
+
+    const { width, height, top, left } = divRef.current.getBoundingClientRect();
+
+    setDimensions({ width, height, top, left });
+  }, []);
   const [wins, setWins] = useState<number>(() => {
     const saved = localStorage.getItem('fut-wins');
     return saved ? parseInt(saved) : 0;
@@ -26,28 +40,13 @@ function App() {
     <div className="app">
         
         
-        <div className="scoreboard-ui">
+        <div ref={divRef} className="scoreboard-ui">
 
             <div className="fut-badge-overlay">
             {/* <img src="/ut-badge.png" alt="FUT Badge" /> */}
-             <img src={utBadge} alt="UT Badge" />
+             {/* <img src={utBadge} alt="UT Badge" /> */}
           </div>
-   <motion.div
-  className="trapezoid"
-  animate={{ boxShadow: [
-    '0 0 20px rgba(255, 0, 0, 0.6)',
-    '0 0 30px rgba(255, 50, 50, 0.9)',
-    '0 0 40px rgba(255, 0, 0, 0.6)',
-    '0 0 30px rgba(255, 50, 50, 0.9)',
-    '0 0 20px rgba(255, 0, 0, 0.6)'
-  ]}}
-  transition={{
-    duration: 2,
-    repeat: Infinity,
-    repeatType: 'loop',
-    ease: 'linear'
-  }}
->
+   <div className="trapezoid">
               <div className="fut-left-glow"></div>
           <div className="wins-section">
             {/* <button className="btn" onClick={() => setWins(wins + 1)}>+</button> */}
@@ -70,8 +69,9 @@ function App() {
             {/* <img src="/ut-badge.png" alt="FUT Badge" /> */}
              {/* <img src={utBadge} alt="UT Badge" /> */}
           {/* </div> */}
+         
 
-        </motion.div>
+        </div>
       </div>
     </div>
   );
