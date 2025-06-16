@@ -33,10 +33,13 @@ function App() {
           {/* <img src={utBadge} alt="UT Badge" /> */}
         </div>
         <div className="trapezoid">
-          <div className="fut-left-glow"></div>
+          {/* <div className="fut-left-glow"></div> */}
           <div className="wins-section">
             {/* <button className="btn" onClick={() => setWins(wins + 1)}>+</button> */}
-            <span className="value" onClick={() => setWins(Math.max(0, wins - 1))}>{wins}</span>
+            <span className="value" onClick={() => setWins(Math.max(0, wins - 1))}>
+              {wins.toString().padStart(2, '0')}
+            </span>
+
             <span className="label" onClick={() => setWins(wins + 1)}>WINS</span>
 
             {/* <button className="btn" onClick={() => setWins(Math.max(0, wins - 1))}>-</button> */}
@@ -47,10 +50,13 @@ function App() {
           <div className="losses-section">
             {/* <button className="btn" onClick={() => setLosses(losses + 1)}>+</button> */}
             <span className="label" onClick={() => setLosses(losses + 1)}>LOSS</span>
-            <span className="value" onClick={() => setLosses(Math.max(0, losses - 1))}>{losses}</span>
+            <span className="value" onClick={() => setLosses(Math.max(0, losses - 1))}>
+              {losses.toString().padStart(2, '0')}
+            </span>
+
             {/* <button className="btn" onClick={() => setLosses(Math.max(0, losses - 1))}>-</button> */}
           </div>
-          <div className="fut-right-glow"></div>
+          {/* <div className="fut-right-glow"></div> */}
           {/* <div className="fut-badge-overlay"> */}
           {/* <img src="/ut-badge.png" alt="FUT Badge" /> */}
           {/* <img src={utBadge} alt="UT Badge" /> */}
